@@ -1,0 +1,3 @@
+os tamanho dos carros dos bots crescerão de forma linear durante o trajeto
+no momento que o tamanho do carro da frente for igual ao do jogador, e ele estiver no mesmo
+eixo x e y, com uma margem de pixels do tamanho do carro, acontecerar a colisão
