@@ -1,11 +1,15 @@
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Carro {
+public class Carro implements KeyListener, Runnable {
     private int xCarro;
     private int yCarro;
 
 
-
+    @Override
+    public void run() {
+        
+    }
 
     public void setXCarro(int xCarro){
         this.xCarro=xCarro;
