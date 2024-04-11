@@ -1,0 +1,31 @@
+os tamanho dos carros dos bots crescerão de forma linear durante o trajeto
+no momento que o tamanho do carro da frente for igual ao do jogador, e ele estiver no mesmo
+eixo x e y, com uma margem de pixels do tamanho do carro, acontecerar a colisão
+
+
+
+//////////////////////////////////////
+adicionar as setas de direção/aviso que sinalizam para onde a pista ira curvar
+verificando a posição do proximo indice do vetor, se houver curva haverá a criação
+de setas indicando a direção de acordo com o valor do vetor
+
+//////////////////////////////////////
+
+adicionar linhas brancas nas laterais da pista de acordo com os calculos
+levando em consideração o tamanho da pista  atual e o tamanho da tela
+
+
+///////////////////////////////
+
+adicionar a mecanica de criação de listras no meio da pista
+
+///////////////////////////////
+
+estudar e debater como será realizado isso
+adicionar mecanica de bots gerados automaticamente
+
+/////////////////////////////////
+
+criar mecanica de explosão caso o carro saia dos parametros da pista
+
+////////////////////////////////
