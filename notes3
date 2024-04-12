@@ -5,10 +5,10 @@ estar conectado com o resultado numérico da velocidade do carro.
 
 
 
-//////////////////////////////////////
+/////////////////////////////////////?
 Fazer um sistema de aceleração da direção do carro durante as curvas. 
 
-Ex.: Se tiver uma curva para esquerda e o jogador mantém a esquerda pressionada, o carro lentamente vai para zebra interna da pista. Caso 
+Ex.:Se tiver uma curva para esquerda e o jogador mantém a esquerda pressionada, o carro lentamente vai para zebra interna da pista. Caso 
 o jogador mantenha a direita pressionada, o carro vai se aproximar de maneira rápida pra zebra externa.
 
 
@@ -16,7 +16,7 @@ o jogador mantenha a direita pressionada, o carro vai se aproximar de maneira r�
 //////////////////////////////////////
 Colocar objetos e obstáculos que podem ajudar/atrapalhar o carro durante o trajeto das pistas. 
 
-Ex:. Rampa, Buracos, etc.
+Ex.:Rampa, Buracos, etc.
 
 
 

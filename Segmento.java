@@ -28,30 +28,65 @@ public class Segmento extends JPanel implements Runnable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         desenharRetangulo(g);
-        g.drawImage(imagemCarro.getImage(), 310, 660, 180, 100, null);
+        
+        // Lógica para desenhar o carro
+        int larguraCarro = 180; // Largura do carro
+        int alturaCarro = 100; // Altura do carro
+        int centroX = (getWidth() - larguraCarro) / 2; // Calcula a coordenada x do centro da tela
+        int alturaDisponivel = getHeight(); // Altura disponível na parte inferior da tela
+        int yBottom = alturaDisponivel - alturaCarro; // Coordenada y para desenhar o carro na parte inferior
+
+        // Desenha o carro na parte inferior da tela
+        g.setColor(Color.RED);
+        g.drawImage(imagemCarro.getImage(), centroX, yBottom, larguraCarro, alturaCarro, this);
     }
 
     
 
+    // private void desenharRetangulo(Graphics g) {
+
+    //     for (int i = 1; i <= 30; i++) {
+
+    //         if(m%2==0){
+    //             g.setColor(Color.BLACK);
+    //         }else{
+    //             g.setColor(Color.GRAY);
+    //         }
+    //         if(i==30){
+    //             largura=2000;
+    //             x=0;
+    //         }
+    //         g.fillRect(x, y, largura, altura);
+    //         this.y -= this.altura;   // defino a altura do quadrado pra sempre ser um acima do outro quadrante
+    //         this.altura-=i/17;
+    //         this.largura -= diminuirTamanho; //diminuo a largura em 30 para cada novo quadrante
+    //         this.x += diminuirTamanho / 2;
+    //         this.x -= (i * this.k) / 100;
+    //         m++;
+    //     }
+    //     m++;
+    // }
+
     private void desenharRetangulo(Graphics g) {
-
+        int centroX = (getWidth() - largura) / 2; // Calcula a coordenada x do centro da tela
+        int yBottom = getHeight() - altura; // Coordenada y para desenhar a pista na parte inferior
+        
         for (int i = 1; i <= 30; i++) {
-
-            if(m%2==0){
+            if (m % 2 == 0) {
                 g.setColor(Color.BLACK);
-            }else{
+            } else {
                 g.setColor(Color.GRAY);
             }
-            if(i==30){
-                largura=2000;
-                x=0;
+            if (i == 30) {
+                largura = 2000;
+                centroX = 0;
             }
-            g.fillRect(x, y, largura, altura);
-            this.y -= this.altura;   // defino a altura do quadrado pra sempre ser um acima do outro quadrante
-            this.altura-=i/17;
-            this.largura -= diminuirTamanho; //diminuo a largura em 30 para cada novo quadrante
-            this.x += diminuirTamanho / 2;
-            this.x -= (i * this.k) / 100;
+            g.fillRect(centroX, yBottom, largura, altura); // Desenha o retângulo na parte inferior da tela
+            yBottom -= altura;
+            this.altura -= i / 17;
+            this.largura -= diminuirTamanho;
+            centroX += diminuirTamanho / 2;
+            centroX -= (i * this.k) / 100;
             m++;
         }
         m++;
@@ -154,5 +189,4 @@ public class Segmento extends JPanel implements Runnable {
     public void reta(){
         ç = 1;
     }
-
 }

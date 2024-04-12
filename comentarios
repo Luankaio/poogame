@@ -1,1 +1,5 @@
 comente aqui!!
+
+(Paulo) 12/04/24 - As pistas e o carro foram centralizados no frame para qualquer proporção. Agora possui uma opção de trocar o 
+modo janela/tela-cheia apertando F11. Não consegui ainda implementar o bloqueio das dimensôes do frame no modo janela, mas é
+importante para evitar que o jogo fique com uma visualização estranha. É necessário mudar a proporção do jogo quando altera as telas.
