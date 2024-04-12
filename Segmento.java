@@ -11,7 +11,7 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
     private int altura = 20; // Altura do retângulo
     private int x = 280; // Coordenada x do canto superior esquerdo do retângulo
     private int y = 750; // Coordenada y do canto superior esquerdo do retângulo
-    private int diminuirTamanho = 18;
+    private int diminuirTamanho = 7;
     private int k = 0;
     private int direcao = 0;
     private int m=0;
@@ -20,9 +20,10 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
     private String image = "./carro.png";
     ImageIcon imagemCarro = new ImageIcon(image);
     Percurso percurso = new Percurso();
+    int countListras=0;
 
     public Segmento() {
-        setBackground(Color.WHITE);
+        setBackground(Color.green);
         addKeyListener(this); // Adiciona o KeyListener ao painel
         setFocusable(true); // Permite que o painel tenha o foco para detectar eventos de teclado
     }
@@ -30,36 +31,42 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
     @Override //pinta o componente retangulo na tela
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        //desenharListras(g);
         desenharRetangulo(g);
         g.drawImage(imagemCarro.getImage(), 310, 660, 180, 100, null);
-
     }
 
-    public void direcionamentoCarro(){
-       
-    }
-    
+
+
 
     private void desenharRetangulo(Graphics g) {
-
-        for (int i = 1; i <= 30; i++) {
-
-            if(m%2==0){
+       
+        for (int i = 1; i <= 100; i++) {
+            
+            if(m%2==0 ){ //deixo as linhas listradas
                 g.setColor(Color.BLACK);
             }else{
                 g.setColor(Color.GRAY);
             }
-            if(i==30){
+            if(i==99){ //faço com que exista uma linha no horizonte
                 largura=2000;
                 x=0;
+            }if(i==100){
+                largura=1000;
+                x=0;
+                altura=359;
+                y=0;
+                g.setColor(Color.CYAN);
             }
+            
             g.fillRect(x, y, largura, altura);
             this.y -= this.altura;   // defino a altura do quadrado pra sempre ser um acima do outro quadrante
-            this.altura-=i/17;
+            this.altura-=i/98;//diminui a altura para cada novo quandrante em i/98, achei o ideal
             this.largura -= diminuirTamanho; //diminuo a largura em 30 para cada novo quadrante
-            this.x += (diminuirTamanho / 2);
-            this.x -= (i * this.k) / 100;
+            this.x += (diminuirTamanho / 2); // diminui o tamanho do retangulo para dar profundidade
+            this.x -= (i * this.k) / 900;// define o grau da curva
             m++;
+            countListras++;
         }
         m++;
     }
@@ -76,7 +83,7 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
             revalidate();//checa se houve alguma mudança
             repaint();//refaz a tela
             try {
-                Thread.sleep(3); // Temporizador entre os frames, 1000=1s
+                Thread.sleep(5); // Temporizador entre os frames, 1000=1s
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -91,8 +98,8 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
     private void reset() {
         this.y = 750;
         this.x = ((800-650)/2)+curva;
-        this.largura = 650;
-        this.altura = 15;
+        this.largura = 750;
+        this.altura = 4;
     }
     
  
@@ -157,13 +164,11 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
             this.curva+=20;
             this.image="./carroesquerda.png";
             this.imagemCarro = new ImageIcon(image);
-            repaint();
         }
         if (codigo == KeyEvent.VK_RIGHT) {
             this.curva-=20;
             this.image="./carrodireita.png";
             this.imagemCarro = new ImageIcon(image);
-            repaint();
         }
         
     }

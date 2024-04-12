@@ -1,5 +1,5 @@
 public class Percurso implements Runnable{
-    private int[] percurso1 = {0,0,0,1,1,0,0,2,2,1};
+    private int[] percurso1 = {0,0,0,1,1,0,0,2,2,1,1,1,1,0,1,2};
     private int direcao=0;
 
     @Override
