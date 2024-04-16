@@ -19,7 +19,6 @@ public class Percurso implements Runnable{
         }
     }
 
-
     public int getDirecao(){
         return direcao;
     }

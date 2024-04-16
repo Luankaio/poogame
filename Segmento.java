@@ -61,6 +61,7 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
             if (i == 99) {  
                 largura = 2000;
                 this.centroX = 0;
+
             }
 
             if(i==100){
@@ -119,7 +120,7 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
             revalidate();//checa se houve alguma mudança
             repaint();//refaz a tela
             try {
-                Thread.sleep(24); // Temporizador entre os frames, 1000=1s
+                Thread.sleep(5); // Temporizador entre os frames, 1000=1s
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
