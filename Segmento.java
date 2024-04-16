@@ -11,6 +11,8 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
     private int altura = 20; // Altura do retângulo
     private int centroX = (getWidth() - largura) / 2; // Coordenada x do canto superior esquerdo do retângulo
     private int yBottom = getHeight() - altura;; // Coordenada y do canto superior esquerdo do retângulo
+    private int larguraCarro = 180; // Largura do carro
+    private int alturaCarro = 100; // Altura do carro
     private int diminuirTamanho = 7;
     private int k = 0;
     private int direcao = 0;
@@ -35,65 +37,38 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
         //desenharListras(g);
 
         // Lógica para desenhar o carro
-        int larguraCarro = 180; // Largura do carro
-        int alturaCarro = 100; // Altura do carro
-        int centroX = (getWidth() - larguraCarro) / 2; // Calcula a coordenada x do centro da tela
+        // int larguraCarro = 180; // Largura do carro
+        // int alturaCarro = 100; // Altura do carro
+        int centroX = (getWidth() - this.larguraCarro) / 2; // Calcula a coordenada x do centro da tela
         int alturaDisponivel = getHeight(); // Altura disponível na parte inferior da tela
-        int yBottom = alturaDisponivel - alturaCarro; // Coordenada y para desenhar o carro na parte inferior
+        int yBottom = alturaDisponivel - this.alturaCarro; // Coordenada y para desenhar o carro na parte inferior
 
         // Desenha o carro na parte inferior da tela
         g.setColor(Color.RED);
         g.drawImage(imagemCarro.getImage(), centroX, yBottom, larguraCarro, alturaCarro, this);
     }
 
-    
-
-    // private void desenharRetangulo(Graphics g) {
-
-    //     for (int i = 1; i <= 30; i++) {
-
-    //         if(m%2==0){
-    //             g.setColor(Color.BLACK);
-    //         }else{
-    //             g.setColor(Color.GRAY);
-    //         }
-    //         if(i==30){
-    //             largura=2000;
-    //             x=0;
-    //         }
-    //         g.fillRect(x, y, largura, altura);
-    //         this.y -= this.altura;   // defino a altura do quadrado pra sempre ser um acima do outro quadrante
-    //         this.altura-=i/17;
-    //         this.largura -= diminuirTamanho; //diminuo a largura em 30 para cada novo quadrante
-    //         this.x += diminuirTamanho / 2;
-    //         this.x -= (i * this.k) / 100;
-    //         m++;
-    //     }
-    //     m++;
-    // }
-
-    private void desenharRetangulo(Graphics g) {
-        // this.centroX = (getWidth() - largura) / 2; // Calcula a coordenada x do centro da tela
-        // this.yBottom = getHeight() - altura; // Coordenada y para desenhar a pista na parte inferior
-        
+    private void desenharRetangulo(Graphics g) {        
         for (int i = 1; i <= 100; i++) {
-            if (m % 2 == 0) {   // Deixa as linhas listradas
+            // Deixa as linhas listradas
+            if (m % 2 == 0) {   
                 g.setColor(Color.BLACK);
             } else {
                 g.setColor(Color.GRAY);
             }
-            if (i == 99) {  // Faz com que exista uma linha no horizonte
+
+            // Faz com que exista uma linha no horizonte
+            if (i == 99) {  
                 largura = 2000;
                 this.centroX = 0;
             }
 
-            //CÉU
             if(i==100){
                 largura=2000;
                 this.centroX=0;
                 altura=359;
                 this.yBottom=0;
-                g.setColor(Color.CYAN);
+                g.setColor(new Color(0, 0, 139));
             }
             
             g.fillRect(this.centroX, this.yBottom, largura, altura); // Desenha o retângulo na parte inferior da tela.
@@ -110,23 +85,14 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
 
     private void reset() {
         this.yBottom = 750;
-        this.centroX = ((800-650)/2)+curva;
-        this.largura = 750;
+        this.centroX = ((getWidth()-950)/2)+curva;
+        this.largura = 950;
         this.altura = 4;
+        this.alturaCarro = 100;
+        this.larguraCarro = 180;
     }
     
-    /*private void sudoReset() {
-        this.y = 750;
-        this.x = 280;
-        this.largura = 300;
-        this.altura = 10;
-        this.k=0;
-    }*/
-    
-
-
     public void percurso() {
-
         if (percurso.getDirecao()==1) {
             curvaEsquerda();
             this.curva-=1;
@@ -140,9 +106,8 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
         }
     }
 
-    
-    
-    @Override//runnable que roda o codigo
+    //runnable que roda o codigo
+    @Override
     public void run() {
         repaint();
         ///////// criação da thread do percurso que faz a pista mudar de forma constante de acordo com o percurso criado
@@ -154,7 +119,7 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
             revalidate();//checa se houve alguma mudança
             repaint();//refaz a tela
             try {
-                Thread.sleep(5); // Temporizador entre os frames, 1000=1s
+                Thread.sleep(24); // Temporizador entre os frames, 1000=1s
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -230,12 +195,13 @@ public class Segmento extends JPanel implements Runnable, KeyListener {
 
         }
 
-        @Override
-        public void keyReleased(KeyEvent tecla) {
-            int codigo = tecla.getKeyCode();
-            if (codigo == KeyEvent.VK_LEFT || codigo == KeyEvent.VK_RIGHT) {
-                this.image = "./carro.png"; // Volta para a imagem padrão do carro
-                this.imagemCarro = new ImageIcon(image); // Atualiza a imagem do carro
-            }
+    @Override
+    public void keyReleased(KeyEvent tecla) {
+        int codigo = tecla.getKeyCode();
+
+        if (codigo == KeyEvent.VK_LEFT || codigo == KeyEvent.VK_RIGHT) {
+            this.image = "./carro.png"; // Volta para a imagem padrão do carro
+            this.imagemCarro = new ImageIcon(image); // Atualiza a imagem do carro
         }
+    }
 }
